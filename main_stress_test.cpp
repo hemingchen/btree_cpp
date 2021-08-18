@@ -36,7 +36,7 @@ std::string genRandomStr(size_t length) {
   return str;
 }
 
-void writeTest(BTree<K, V>* btree) {
+void writeTest(BTree<K, V>& btree) {
   for (int count = 0; count < TEST_COUNT; count++) {
     // 1. Use int value
     // bt->set(genRandomStr(RDM_STR_LEN), std::rand());
@@ -45,13 +45,13 @@ void writeTest(BTree<K, V>* btree) {
     std::string key(genRandomStr(RDM_STR_LEN));
     std::vector<int> value(100, 0);
     generate(value.begin(), value.end(), rand);
-    btree->set(key, value);
+    btree.set(key, value);
   }
 }
 
-void readTest(BTree<K, V>* btree) {
+void readTest(BTree<K, V>& btree) {
   for (int count = 0; count < TEST_COUNT; count++) {
-    btree->get(genRandomStr(RDM_STR_LEN));
+    btree.get(genRandomStr(RDM_STR_LEN));
   }
 }
 
@@ -64,7 +64,7 @@ int main() {
   auto start = std::chrono::high_resolution_clock::now();
 
   // Write test
-  { writeTest(btree); }
+  { writeTest(*btree); }
 
   // Get write to b-tree time
   auto writeEnd = std::chrono::high_resolution_clock::now();
@@ -72,7 +72,7 @@ int main() {
       std::chrono::duration_cast<std::chrono::nanoseconds>(writeEnd - start);
 
   // Read test
-  { readTest(btree); }
+  { readTest(*btree); }
 
   // Stop clock and get read from b-tree time
   auto readEnd = std::chrono::high_resolution_clock::now();
