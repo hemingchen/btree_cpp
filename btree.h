@@ -196,7 +196,7 @@ void BTreeNode<K, V>::splitChild(int fullChildIdx) {
   // 3. The 1 key in the middle goes to parent (this node)
   cout << "node full, splitting..." << endl;
 
-  // Get a reference of the full child unique pointer
+  // Get a reference of the full child's pointer
   std::shared_ptr<BTreeNode<K, V>>& fullChild = m_Children[fullChildIdx];
 
   // Create a new child to store last (t-1) m_Keys
