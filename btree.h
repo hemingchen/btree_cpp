@@ -27,7 +27,7 @@ class Entry {
 
   Entry(const K& key, const V& value) : m_Key(key), m_Value(value) {}
 
-  Entry(const K&& key, const V&& value)
+  Entry(K&& key, V&& value)
       : m_Key(std::move(key)), m_Value(std::move(value)) {}
 
   Entry(const Entry<K, V>& other)
